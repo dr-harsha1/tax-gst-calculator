@@ -479,60 +479,59 @@
             return suggestions.slice(0, 5);
         }
         
-        function displayResults(oldTax, newTax, regime, savings, income, oldIncome, newIncome, suggestions) {
-            const resultHtml = `
-                <div class="result-box">
-                    <div class="tax-summary">
-                        <h3>📊 Your Tax Summary</h3>
-                        <div class="comparison-row">
-                            <div class="comparison-card old ${regime === 'Old Regime' ? 'winner' : ''}">
-                                <div>🏛️ OLD REGIME</div>
-                                <div class="tax-amount">₹${oldTax.toLocaleString('en-IN')}</div>
-                                <small>Tax + Cess (4%)</small>
-                                <div><small>Taxable: ₹${oldIncome.toLocaleString('en-IN')}</small></div>
-                            </div>
-                            <div class="comparison-card new ${regime === 'New Regime' ? 'winner' : ''}">
-                                <div>✨ NEW REGIME</div>
-                                <div class="tax-amount">₹${newTax.toLocaleString('en-IN')}</div>
-                                <small>Tax + Cess (4%)</small>
-                                <div><small>Taxable: ₹${newIncome.toLocaleString('en-IN')}</small></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="savings-box">
-                        <div>✅ RECOMMENDED: ${regime}</div>
-                        <div class="savings-amount">💰 YOU SAVE: ₹${savings.toLocaleString('en-IN')}</div>
-                        <div style="margin-top: 8px; font-size: 14px;">by choosing ${regime}</div>
-                    </div>
-                    
-                    <div class="chart-container">
-                        <canvas id="taxChart" width="600" height="300"></canvas>
-                    </div>
-                    
-                    <div class="suggestions-box">
-                        <h4>💡 SMART TAX SAVING SUGGESTIONS</h4>
-                        ${suggestions.map(s => `
-                            <div class="suggestion-item">
-                                <div class="suggestion-icon">${s.icon}</div>
-                                <div class="suggestion-text">${s.text}</div>
-                                <div class="saving-potential">${s.potential}</div>
-                            </div>
-                        `).join('')}
-                    </div>
-                    
-                    <div class="premium-buttons">
-                        <button class="btn-pdf" onclick="downloadBasicPDF()">📄 Free PDF (Watermarked)</button>
-                        <button class="btn-premium" onclick="upgradeToPremium()">⭐ Premium (₹49) → No Watermark</button>
-                    </div>
-                    <div class="watermark-note">
-                        Free PDF includes watermark. Premium removes watermark + includes all charts and suggestions.
-                    </div>
-                </div>
-            `;
+        // REPLACE your displayResults function with this
+function displayResults(oldTax, newTax, regime, savings, income, oldIncome, newIncome, suggestions) {
+    // FREE TIER: Limited features
+    const freeSuggestions = suggestions.slice(0, 1); // Only 1 suggestion
+    
+    const resultHtml = `
+        <div class="result-box">
+            <!-- Basic calculation (FREE maintains this) -->
+            <div class="calculation-basic">
+                <div class="old-tax">Old Regime: ₹${oldTax.toLocaleString('en-IN')}</div>
+                <div class="new-tax">New Regime: ₹${newTax.toLocaleString('en-IN')}</div>
+                <div class="savings">You Save: ₹${savings.toLocaleString('en-IN')}</div>
+            </div>
             
-            document.getElementById('resultArea').innerHTML = resultHtml;
-        }
+            <!-- FREE TIER: Text-only, no chart -->
+            <div class="free-notice">
+                📊 Upgrade to Premium to see interactive tax comparison chart
+            </div>
+            
+            <!-- FREE TIER: Only 1 suggestion -->
+            <div class="suggestions-limited">
+                <h4>💡 Tax Saving Tip (1 of 7)</h4>
+                ${freeSuggestions[0] ? `
+                    <div class="suggestion">
+                        ${freeSuggestions[0].text}
+                        <span class="potential">${freeSuggestions[0].potential}</span>
+                    </div>
+                ` : ''}
+                <button class="unlock-btn" onclick="showUpgradePopup()">
+                    🔓 Unlock 6 more personalized suggestions →
+                </button>
+            </div>
+            
+            <!-- FREE TIER: Watermarked PDF -->
+            <div class="pdf-actions">
+                <button class="btn-pdf" onclick="downloadWatermarkedPDF()">
+                    📄 Download PDF (Watermarked - Free)
+                </button>
+                <button class="btn-premium" onclick="showUpgradePopup()">
+                    ⭐ Upgrade to Premium (₹49) → No Watermark + Full Report
+                </button>
+            </div>
+            
+            <!-- Affiliate links visible to everyone -->
+            <div class="affiliate-links">
+                <a href="#">📈 Start investing with Groww</a>
+                <a href="#">🛡️ Get term insurance (tax deductible)</a>
+            </div>
+        </div>
+    `;
+    
+    document.getElementById('resultArea').innerHTML = resultHtml;
+}
         
         function createChart(oldTax, newTax) {
             const ctx = document.getElementById('taxChart');
