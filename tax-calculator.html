@@ -2,14 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Income Tax Calculator India 2025-26 | Smart Tax Saving Suggestions</title>
-    <meta name="description" content="Free Income Tax Calculator with AI-powered tax saving suggestions. Compare New vs Old Regime with visual charts and actionable recommendations.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Income Tax Calculator India 2025-26 | Smart Tax Saving Tool</title>
+    <meta name="description" content="Professional income tax calculator with personalized tax saving suggestions. Compare New vs Old Regime instantly.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     
     <!-- Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     
     <style>
         * {
@@ -19,52 +21,89 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #1e3a5f 0%, #0f2b3d 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 24px;
         }
         
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
         }
         
-        .back-link {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
+        /* Navigation */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding: 0 8px;
         }
         
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+        
+        .back-link {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+        
+        .back-link:hover {
+            color: white;
+        }
+        
+        /* Main Card */
         .card {
             background: white;
-            border-radius: 24px;
+            border-radius: 28px;
             padding: 32px;
-            margin-bottom: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            margin-bottom: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
         }
         
         h1 {
-            color: #1e3a5f;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #0f172a;
             margin-bottom: 8px;
-            font-size: 1.8rem;
         }
         
         .subtitle {
-            color: #666;
+            color: #64748b;
+            font-size: 0.875rem;
             margin-bottom: 24px;
-            font-size: 0.9rem;
         }
         
-        .budget-note {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
+        .budget-badge {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
             padding: 12px 16px;
-            margin-bottom: 24px;
             border-radius: 12px;
-            font-size: 0.85rem;
+            margin-bottom: 28px;
+            font-size: 0.8rem;
+            color: #78350f;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 640px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
         }
         
         .form-group {
@@ -73,36 +112,53 @@
         
         label {
             display: block;
-            margin-bottom: 8px;
+            font-size: 0.75rem;
             font-weight: 600;
-            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #64748b;
+            margin-bottom: 8px;
         }
         
         input, select {
             width: 100%;
             padding: 12px 16px;
-            border: 1px solid #ddd;
-            border-radius: 12px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 14px;
             font-size: 1rem;
-            font-family: inherit;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
         }
         
         .calculate-btn {
-            background: linear-gradient(135deg, #1e3a5f 0%, #0f2b3d 100%);
+            width: 100%;
+            background: linear-gradient(135deg, #1e3a5f, #0f2b3d);
             color: white;
             border: none;
-            padding: 14px 28px;
-            border-radius: 50px;
+            padding: 14px 24px;
+            border-radius: 40px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            width: 100%;
+            transition: transform 0.2s, box-shadow 0.2s;
             margin-top: 8px;
         }
         
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.2);
+        }
+        
+        /* Result Section */
         .result-box {
             margin-top: 32px;
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.4s ease;
         }
         
         @keyframes fadeIn {
@@ -110,84 +166,118 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        .tax-summary {
-            background: #f0fdf4;
-            border-radius: 20px;
-            padding: 24px;
-            margin-bottom: 20px;
-        }
-        
-        .tax-summary h3 {
-            color: #1e3a5f;
-            margin-bottom: 16px;
-        }
-        
-        .comparison-row {
+        .tax-comparison {
             display: flex;
             gap: 20px;
-            margin: 20px 0;
+            margin-bottom: 24px;
         }
         
-        .comparison-card {
+        @media (max-width: 640px) {
+            .tax-comparison {
+                flex-direction: column;
+            }
+        }
+        
+        .tax-card {
             flex: 1;
             padding: 20px;
-            border-radius: 16px;
+            border-radius: 20px;
             text-align: center;
         }
         
-        .comparison-card.old {
-            background: #fee2e2;
-            border: 2px solid #ef4444;
+        .tax-card.old {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
         }
         
-        .comparison-card.new {
-            background: #dcfce7;
-            border: 2px solid #22c55e;
+        .tax-card.new {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
         }
         
-        .comparison-card.winner {
-            box-shadow: 0 0 0 3px #ffd700;
+        .tax-card.winner {
+            border: 2px solid #f59e0b;
+            box-shadow: 0 4px 12px rgba(245,158,11,0.2);
+        }
+        
+        .tax-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
         }
         
         .tax-amount {
-            font-size: 28px;
-            font-weight: 800;
-            margin: 12px 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 8px 0;
         }
         
-        .savings-box {
+        .taxable-income {
+            font-size: 0.7rem;
+            color: #64748b;
+        }
+        
+        .savings-banner {
             background: linear-gradient(135deg, #22c55e, #16a34a);
             color: white;
-            padding: 24px;
+            padding: 20px;
             border-radius: 20px;
             text-align: center;
-            margin: 20px 0;
+            margin-bottom: 24px;
+        }
+        
+        .savings-label {
+            font-size: 0.75rem;
+            opacity: 0.9;
         }
         
         .savings-amount {
-            font-size: 36px;
+            font-size: 2rem;
             font-weight: 800;
+            margin: 8px 0;
         }
         
-        .suggestions-box {
-            background: #fef3c7;
-            border-left: 4px solid #f59e0b;
+        .regime-recommendation {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+        
+        .suggestions-section {
+            background: #f8fafc;
+            border-radius: 20px;
             padding: 20px;
-            border-radius: 16px;
             margin: 20px 0;
         }
         
-        .suggestions-box h4 {
-            color: #92400e;
-            margin-bottom: 12px;
+        .suggestions-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .suggestions-header h3 {
+            font-size: 1rem;
+            color: #0f172a;
+        }
+        
+        .premium-tag {
+            background: #fef3c7;
+            color: #d97706;
+            font-size: 0.65rem;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-weight: 600;
         }
         
         .suggestion-item {
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 10px 0;
-            border-bottom: 1px solid #fde68a;
+            padding: 12px 0;
+            border-bottom: 1px solid #e2e8f0;
         }
         
         .suggestion-item:last-child {
@@ -195,150 +285,285 @@
         }
         
         .suggestion-icon {
-            font-size: 20px;
+            font-size: 1.25rem;
         }
         
         .suggestion-text {
             flex: 1;
-            color: #78350f;
+            font-size: 0.875rem;
+            color: #334155;
         }
         
         .saving-potential {
-            font-weight: 700;
+            font-size: 0.75rem;
+            font-weight: 600;
             color: #16a34a;
         }
         
-        .chart-container {
+        .unlock-btn {
+            background: none;
+            border: 1px solid #e2e8f0;
+            color: #3b82f6;
+            padding: 10px 16px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 12px;
+            transition: all 0.2s;
+        }
+        
+        .unlock-btn:hover {
+            background: #eff6ff;
+            border-color: #3b82f6;
+        }
+        
+        .preview-box {
+            background: #f1f5f9;
+            border-radius: 16px;
+            padding: 16px;
             margin: 20px 0;
             text-align: center;
         }
         
-        canvas {
-            max-width: 100%;
-            height: auto;
+        .preview-label {
+            font-size: 0.7rem;
+            color: #64748b;
+            margin-bottom: 8px;
         }
         
-        .premium-buttons {
+        .preview-blur {
+            filter: blur(4px);
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: #94a3b8;
+        }
+        
+        .action-buttons {
             display: flex;
             gap: 12px;
-            margin-top: 24px;
-            flex-wrap: wrap;
+            margin-top: 20px;
         }
         
-        .btn-pdf {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        .btn-free {
             flex: 1;
-            padding: 14px;
+            background: #f1f5f9;
+            color: #334155;
             border: none;
-            border-radius: 50px;
+            padding: 12px;
+            border-radius: 40px;
             font-weight: 600;
             cursor: pointer;
         }
         
         .btn-premium {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             flex: 1;
-            padding: 14px;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
             border: none;
-            border-radius: 50px;
+            padding: 12px;
+            border-radius: 40px;
             font-weight: 600;
             cursor: pointer;
         }
         
         .watermark-note {
-            font-size: 0.7rem;
-            color: #999;
+            font-size: 0.65rem;
+            color: #94a3b8;
             text-align: center;
             margin-top: 12px;
         }
         
         .ad-space {
-            background: #f8f9fa;
-            border: 1px dashed #dee2e6;
-            border-radius: 12px;
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 16px;
             padding: 16px;
             text-align: center;
-            margin: 20px 0;
+            color: #64748b;
+            font-size: 0.7rem;
         }
         
         .footer {
             text-align: center;
-            color: white;
-            margin-top: 20px;
+            color: #94a3b8;
             font-size: 0.7rem;
+            margin-top: 24px;
+        }
+        
+        /* Upgrade Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 28px;
+            padding: 32px;
+            max-width: 500px;
+            margin: 20px;
+            position: relative;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #94a3b8;
+        }
+        
+        .feature-compare {
+            margin: 20px 0;
+        }
+        
+        .feature-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .upgrade-modal-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 16px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <a href="index.html" class="back-link">← Back to all tools</a>
+        <div class="nav-bar">
+            <div class="logo">🇮🇳 IndiaTaxSuite</div>
+            <a href="index.html" class="back-link">← Back to all tools</a>
+        </div>
         
         <div class="card">
-            <h1>🧠 Income Tax Calculator 2025-26</h1>
-            <div class="subtitle">Smart calculator with AI-powered tax saving suggestions</div>
+            <h1>Income Tax Calculator 2025-26</h1>
+            <div class="subtitle">Compare New vs Old Regime | Get personalized tax saving tips</div>
             
-            <div class="budget-note">
-                📢 <strong>Budget 2025-26 Updates:</strong> Tax-free limit: ₹4,00,000 | Rebate up to ₹12L income | New slabs introduced
+            <div class="budget-badge">
+                📢 <strong>Budget 2025-26 Updates:</strong> Tax-free limit: ₹4,00,000 | Rebate up to ₹12L income | Standard deduction ₹75,000
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Annual Income (₹)</label>
+                    <input type="number" id="income" placeholder="e.g., 15,00,000" value="1500000">
+                </div>
+                <div class="form-group">
+                    <label>Section 80C (Max ₹1.5L)</label>
+                    <input type="number" id="deduction80c" placeholder="PPF, ELSS, LIC" value="150000">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Section 80D - Health Insurance</label>
+                    <input type="number" id="deduction80d" placeholder="Self + Parents" value="25000">
+                </div>
+                <div class="form-group">
+                    <label>HRA Received (Yearly)</label>
+                    <input type="number" id="hraReceived" placeholder="House Rent Allowance" value="180000">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Rent Paid (Yearly)</label>
+                    <input type="number" id="rentPaid" placeholder="Annual rent" value="200000">
+                </div>
+                <div class="form-group">
+                    <label>City Type</label>
+                    <select id="cityType">
+                        <option value="metro">Metro (Delhi, Mumbai, Kolkata, Chennai)</option>
+                        <option value="non-metro">Non-Metro (Other cities)</option>
+                    </select>
+                </div>
             </div>
             
             <div class="form-group">
-                <label>Annual Salary / Income (₹)</label>
-                <input type="number" id="income" placeholder="e.g., 2500000" value="2500000">
+                <label>Home Loan Interest - Section 24(b) (Max ₹2L)</label>
+                <input type="number" id="homeloanInterest" placeholder="Interest paid on home loan" value="0">
             </div>
             
-            <div class="form-group">
-                <label>Section 80C (PPF, ELSS, LIC) - Max ₹1.5L (₹)</label>
-                <input type="number" id="deduction80c" placeholder="0 - 150000" value="150000">
-            </div>
-            
-            <div class="form-group">
-                <label>Section 80D (Health Insurance) (₹)</label>
-                <input type="number" id="deduction80d" placeholder="0 - 50000" value="25000">
-            </div>
-            
-            <div class="form-group">
-                <label>HRA Received (₹ per year)</label>
-                <input type="number" id="hraReceived" placeholder="e.g., 240000" value="240000">
-            </div>
-            
-            <div class="form-group">
-                <label>Rent Paid (₹ per year)</label>
-                <input type="number" id="rentPaid" placeholder="e.g., 300000" value="300000">
-            </div>
-            
-            <div class="form-group">
-                <label>City Type for HRA</label>
-                <select id="cityType">
-                    <option value="metro">Metro (Delhi, Mumbai, Kolkata, Chennai)</option>
-                    <option value="non-metro">Non-Metro (Other cities)</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label>Home Loan Interest (Section 24(b)) - Max ₹2L (₹)</label>
-                <input type="number" id="homeloanInterest" placeholder="0 - 200000" value="0">
-            </div>
-            
-            <button class="calculate-btn" onclick="calculateAndDisplay()">Calculate Tax & Get Suggestions →</button>
+            <button class="calculate-btn" onclick="calculateTax()">Calculate Tax →</button>
             
             <div id="resultArea"></div>
         </div>
         
         <div class="ad-space">
-            📢 Advertisement Space
+            📢 Advertisement Space - Sign up at Hydro Online
         </div>
         
         <div class="footer">
-            <p>Disclaimer: Estimates based on Budget 2025-26. Consult CA for actual filing.</p>
+            <p>© 2026 IndiaTaxSuite | Estimates based on Budget 2025-26 | Consult CA for filing</p>
+        </div>
+    </div>
+    
+    <!-- Upgrade Modal -->
+    <div id="upgradeModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h3 style="margin-bottom: 16px;">⭐ Upgrade to Premium</h3>
+            <p style="color: #64748b; margin-bottom: 20px;">Get complete tax reports, all suggestions, and professional PDF exports.</p>
+            
+            <div class="feature-compare">
+                <div class="feature-row">
+                    <span>Full tax report PDF</span>
+                    <span>🔒 Unlocked</span>
+                </div>
+                <div class="feature-row">
+                    <span>7+ personalized suggestions</span>
+                    <span>🔒 Unlocked</span>
+                </div>
+                <div class="feature-row">
+                    <span>Interactive comparison chart</span>
+                    <span>🔒 Unlocked</span>
+                </div>
+                <div class="feature-row">
+                    <span>Investment recommendations</span>
+                    <span>🔒 Unlocked</span>
+                </div>
+                <div class="feature-row">
+                    <span>No watermarks</span>
+                    <span>🔒 Unlocked</span>
+                </div>
+            </div>
+            
+            <div class="price" style="text-align: center; margin: 20px 0;">
+                <span style="font-size: 2rem; font-weight: 700;">₹49</span>
+                <span style="color: #64748b;">/month</span>
+                <div style="font-size: 0.7rem;">or ₹499/year (save 16%)</div>
+            </div>
+            
+            <button class="upgrade-modal-btn" onclick="upgradeToPremium()">Proceed to Payment →</button>
+            <p style="text-align: center; font-size: 0.7rem; color: #94a3b8; margin-top: 16px;">UPI payment • Cancel anytime</p>
         </div>
     </div>
     
     <script>
-        let currentChart = null;
         let currentData = null;
         
-        function calculateAndDisplay() {
-            // Get input values
+        function calculateTax() {
             const income = parseFloat(document.getElementById('income').value) || 0;
             const deduction80c = Math.min(parseFloat(document.getElementById('deduction80c').value) || 0, 150000);
             const deduction80d = Math.min(parseFloat(document.getElementById('deduction80d').value) || 0, 50000);
@@ -347,41 +572,37 @@
             const cityType = document.getElementById('cityType').value;
             const homeLoanInterest = Math.min(parseFloat(document.getElementById('homeloanInterest').value) || 0, 200000);
             
-            // Calculate HRA exemption
+            // HRA Exemption
             let rentExcess = rentPaid - (0.1 * income);
             let percentageOfSalary = cityType === 'metro' ? 0.5 * income : 0.4 * income;
             let hraExemption = Math.max(0, Math.min(hraReceived, rentExcess, percentageOfSalary));
             
-            // Old regime
+            // Old Regime
             let oldDeductions = deduction80c + deduction80d + hraExemption + homeLoanInterest;
             let oldIncome = Math.max(0, income - oldDeductions);
             let oldTax = calculateOldRegimeTax(oldIncome);
             let oldTotal = oldTax + (oldTax * 0.04);
             
-            // New regime
+            // New Regime
             let newDeductions = deduction80c + deduction80d;
             let newIncome = Math.max(0, income - newDeductions);
             let newTax = calculateNewRegimeTax(newIncome);
             let newTotal = newTax + (newTax * 0.04);
             
-            // Determine winner
             let betterRegime = oldTotal < newTotal ? "Old Regime" : (newTotal < oldTotal ? "New Regime" : "Equal");
             let savings = Math.abs(oldTotal - newTotal);
             
-            // Generate suggestions
-            const suggestions = generateSuggestions(income, deduction80c, deduction80d, hraExemption, homeLoanInterest, betterRegime);
+            // Generate suggestions (all 7 for premium)
+            const allSuggestions = generateAllSuggestions(income, deduction80c, deduction80d, hraExemption, homeLoanInterest, betterRegime);
+            const freeSuggestions = allSuggestions.slice(0, 1);
             
-            // Store for PDF
             currentData = {
                 income, oldIncome, newIncome, oldTotal, newTotal, betterRegime, savings,
-                deduction80c, deduction80d, hraExemption, homeLoanInterest
+                deduction80c, deduction80d, hraExemption, homeLoanInterest,
+                allSuggestions, freeSuggestions
             };
             
-            // Display results
-            displayResults(oldTotal, newTotal, betterRegime, savings, income, oldIncome, newIncome, suggestions);
-            
-            // Create chart
-            createChart(oldTotal, newTotal);
+            displayResults(oldTotal, newTotal, betterRegime, savings, income, freeSuggestions, allSuggestions.length);
         }
         
         function calculateOldRegimeTax(income) {
@@ -407,253 +628,228 @@
             return Math.max(0, tax);
         }
         
-        function generateSuggestions(income, deduction80c, deduction80d, hra, homeLoan, betterRegime) {
+        function generateAllSuggestions(income, d80c, d80d, hra, homeLoan, regime) {
             const suggestions = [];
             
-            // Suggestion 1: 80C optimization
-            if (deduction80c < 150000) {
-                const remaining80c = 150000 - deduction80c;
-                const taxSaved = remaining80c * 0.30;
-                suggestions.push({
-                    icon: "💰",
-                    text: `Invest ₹${remaining80c.toLocaleString('en-IN')} more in PPF, ELSS, or LIC to save up to ₹${taxSaved.toLocaleString('en-IN')} in taxes`,
-                    potential: `Save ₹${taxSaved.toLocaleString('en-IN')}`
-                });
+            if (d80c < 150000) {
+                const remaining = 150000 - d80c;
+                suggestions.push({ icon: "💰", text: `Invest ₹${remaining.toLocaleString('en-IN')} more in PPF, ELSS, or NPS`, potential: `Save ₹${Math.round(remaining * 0.3).toLocaleString('en-IN')}` });
             }
             
-            // Suggestion 2: Health insurance
-            if (deduction80d < 50000) {
-                const remaining80d = 50000 - deduction80d;
-                const taxSaved = remaining80d * 0.30;
-                suggestions.push({
-                    icon: "🏥",
-                    text: `Get health insurance for ₹${remaining80d.toLocaleString('en-IN')} (Section 80D) and save ₹${taxSaved.toLocaleString('en-IN')} tax`,
-                    potential: `Save ₹${taxSaved.toLocaleString('en-IN')}`
-                });
+            if (d80d < 50000 && income > 800000) {
+                const remaining = 50000 - d80d;
+                suggestions.push({ icon: "🏥", text: `Buy health insurance worth ₹${remaining.toLocaleString('en-IN')} under Section 80D`, potential: `Save ₹${Math.round(remaining * 0.3).toLocaleString('en-IN')}` });
             }
             
-            // Suggestion 3: HRA optimization
-            if (hra < 50000 && income > 500000) {
-                suggestions.push({
-                    icon: "🏠",
-                    text: "Submit rent receipts to your employer to claim HRA exemption. Ensure rent is paid via bank transfer for proof.",
-                    potential: "Save ₹20,000-50,000"
-                });
-            }
-            
-            // Suggestion 4: Home loan
             if (homeLoan < 200000 && income > 1000000) {
                 const remaining = 200000 - homeLoan;
-                const taxSaved = remaining * 0.30;
-                suggestions.push({
-                    icon: "🏡",
-                    text: `Claim full home loan interest deduction. Unclaimed: ₹${remaining.toLocaleString('en-IN')} → saves ₹${taxSaved.toLocaleString('en-IN')} tax`,
-                    potential: `Save ₹${taxSaved.toLocaleString('en-IN')}`
-                });
+                suggestions.push({ icon: "🏡", text: `Claim full home loan interest of ₹${remaining.toLocaleString('en-IN')}`, potential: `Save ₹${Math.round(remaining * 0.3).toLocaleString('en-IN')}` });
             }
             
-            // Suggestion 5: Regime recommendation
-            if (betterRegime === "New Regime" && income > 1500000) {
-                suggestions.push({
-                    icon: "⭐",
-                    text: "You're benefiting from New Regime. Consider checking if switching to Old Regime with more deductions saves more next year.",
-                    potential: "Review annually"
-                });
-            } else if (betterRegime === "Old Regime") {
-                suggestions.push({
-                    icon: "📊",
-                    text: "Old Regime suits you. Maximize Section 80C, 80D, and home loan deductions to reduce tax further.",
-                    potential: "Optimize deductions"
-                });
-            }
-            
-            // Suggestion 6: NPS
             if (income > 1000000) {
-                suggestions.push({
-                    icon: "🏦",
-                    text: "Invest in NPS (National Pension System) up to ₹50,000 under Section 80CCD(1B) for additional tax saving",
-                    potential: "Save upto ₹15,600"
-                });
+                suggestions.push({ icon: "🏦", text: "Invest in NPS under Section 80CCD(1B) up to ₹50,000", potential: "Save ₹15,600" });
             }
             
-            return suggestions.slice(0, 5);
+            if (regime === "New Regime" && income > 1200000) {
+                suggestions.push({ icon: "📊", text: "New Regime is better for you. Consider restructuring investments", potential: "Optimal regime" });
+            } else if (regime === "Old Regime") {
+                suggestions.push({ icon: "📈", text: "Old Regime suits you. Maximize Section 80C, 80D, home loan", potential: "Maximize deductions" });
+            }
+            
+            suggestions.push({ icon: "📅", text: "File your ITR before July 31 to avoid late fees", potential: "Avoid ₹5,000 penalty" });
+            
+            return suggestions;
         }
         
-        // REPLACE your displayResults function with this
-function displayResults(oldTax, newTax, regime, savings, income, oldIncome, newIncome, suggestions) {
-    // FREE TIER: Limited features
-    const freeSuggestions = suggestions.slice(0, 1); // Only 1 suggestion
-    
-    const resultHtml = `
-        <div class="result-box">
-            <!-- Basic calculation (FREE maintains this) -->
-            <div class="calculation-basic">
-                <div class="old-tax">Old Regime: ₹${oldTax.toLocaleString('en-IN')}</div>
-                <div class="new-tax">New Regime: ₹${newTax.toLocaleString('en-IN')}</div>
-                <div class="savings">You Save: ₹${savings.toLocaleString('en-IN')}</div>
-            </div>
-            
-            <!-- FREE TIER: Text-only, no chart -->
-            <div class="free-notice">
-                📊 Upgrade to Premium to see interactive tax comparison chart
-            </div>
-            
-            <!-- FREE TIER: Only 1 suggestion -->
-            <div class="suggestions-limited">
-                <h4>💡 Tax Saving Tip (1 of 7)</h4>
-                ${freeSuggestions[0] ? `
-                    <div class="suggestion">
-                        ${freeSuggestions[0].text}
-                        <span class="potential">${freeSuggestions[0].potential}</span>
+        function displayResults(oldTax, newTax, regime, savings, income, freeSuggestions, totalSuggestions) {
+            const resultHtml = `
+                <div class="result-box">
+                    <div class="tax-comparison">
+                        <div class="tax-card old ${regime === 'Old Regime' ? 'winner' : ''}">
+                            <div class="tax-label">🏛️ OLD REGIME</div>
+                            <div class="tax-amount">₹${oldTax.toLocaleString('en-IN')}</div>
+                            <div class="taxable-income">Tax + Cess (4%)</div>
+                        </div>
+                        <div class="tax-card new ${regime === 'New Regime' ? 'winner' : ''}">
+                            <div class="tax-label">✨ NEW REGIME</div>
+                            <div class="tax-amount">₹${newTax.toLocaleString('en-IN')}</div>
+                            <div class="taxable-income">Tax + Cess (4%)</div>
+                        </div>
                     </div>
-                ` : ''}
-                <button class="unlock-btn" onclick="showUpgradePopup()">
-                    🔓 Unlock 6 more personalized suggestions →
-                </button>
-            </div>
+                    
+                    <div class="savings-banner">
+                        <div class="savings-label">✅ RECOMMENDED: ${regime}</div>
+                        <div class="savings-amount">💰 YOU SAVE ₹${savings.toLocaleString('en-IN')}</div>
+                        <div class="regime-recommendation">by choosing ${regime}</div>
+                    </div>
+                    
+                    <div class="preview-box">
+                        <div class="preview-label">📊 TAX COMPARISON CHART (PREVIEW)</div>
+                        <div class="preview-blur">
+                            ████████████████████████████████████████<br>
+                            ████████████████████████████████████████
+                        </div>
+                        <div style="font-size: 0.7rem; margin-top: 8px; color: #3b82f6;">✨ Upgrade to see interactive chart</div>
+                    </div>
+                    
+                    <div class="suggestions-section">
+                        <div class="suggestions-header">
+                            <h3>💡 Tax Saving Suggestions</h3>
+                            <span class="premium-tag">${freeSuggestions.length} of ${totalSuggestions} shown</span>
+                        </div>
+                        ${freeSuggestions.map(s => `
+                            <div class="suggestion-item">
+                                <div class="suggestion-icon">${s.icon}</div>
+                                <div class="suggestion-text">${s.text}</div>
+                                <div class="saving-potential">${s.potential}</div>
+                            </div>
+                        `).join('')}
+                        <button class="unlock-btn" onclick="showUpgradeModal()">🔓 Unlock ${totalSuggestions - freeSuggestions.length} more suggestions →</button>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn-free" onclick="downloadFreePDF()">📄 Free PDF (Masked)</button>
+                        <button class="btn-premium" onclick="showUpgradeModal()">⭐ Upgrade (₹49) → Full Report</button>
+                    </div>
+                    <div class="watermark-note">
+                        Free PDF shows masked amounts and includes watermark
+                    </div>
+                </div>
+            `;
             
-            <!-- FREE TIER: Watermarked PDF -->
-            <div class="pdf-actions">
-                <button class="btn-pdf" onclick="downloadWatermarkedPDF()">
-                    📄 Download PDF (Watermarked - Free)
-                </button>
-                <button class="btn-premium" onclick="showUpgradePopup()">
-                    ⭐ Upgrade to Premium (₹49) → No Watermark + Full Report
-                </button>
-            </div>
-            
-            <!-- Affiliate links visible to everyone -->
-            <div class="affiliate-links">
-                <a href="#">📈 Start investing with Groww</a>
-                <a href="#">🛡️ Get term insurance (tax deductible)</a>
-            </div>
-        </div>
-    `;
-    
-    document.getElementById('resultArea').innerHTML = resultHtml;
-}
-        
-        function createChart(oldTax, newTax) {
-            const ctx = document.getElementById('taxChart');
-            if (!ctx) return;
-            
-            if (currentChart) {
-                currentChart.destroy();
-            }
-            
-            currentChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Old Regime', 'New Regime'],
-                    datasets: [{
-                        label: 'Tax Payable (₹)',
-                        data: [oldTax, newTax],
-                        backgroundColor: ['#ef4444', '#22c55e'],
-                        borderRadius: 8,
-                        borderWidth: 0
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: true,
-                    plugins: {
-                        legend: { position: 'top' },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return `₹${context.raw.toLocaleString('en-IN')}`;
-                                }
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                callback: function(value) {
-                                    return '₹' + value.toLocaleString('en-IN');
-                                }
-                            }
-                        }
-                    }
-                }
-            });
+            document.getElementById('resultArea').innerHTML = resultHtml;
         }
         
-        async function downloadBasicPDF() {
+        async function downloadFreePDF() {
             if (!currentData) {
                 alert("Please calculate tax first");
                 return;
             }
             
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+            // Create masked numbers for free PDF
+            const maskedOldTax = "XX,XXX";
+            const maskedNewTax = "XX,XXX";
+            const maskedSavings = "XX,XXX";
             
-            // Header
-            doc.setFillColor(30, 58, 95);
-            doc.rect(0, 0, 297, 35, 'F');
-            doc.setTextColor(255, 255, 255);
-            doc.setFontSize(20);
-            doc.text("🇮🇳 INDIA TAX SUITE", 20, 18);
-            doc.setFontSize(9);
-            doc.text("Income Tax Report | Budget 2025-26", 20, 27);
-            doc.text(`Date: ${new Date().toLocaleDateString('en-IN')}`, 250, 27, { align: 'right' });
+            const pdfContent = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Tax Report - IndiaTaxSuite</title>
+                    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+                    <style>
+                        body {
+                            font-family: 'Inter', sans-serif;
+                            padding: 40px;
+                            color: #1e293b;
+                        }
+                        .header {
+                            text-align: center;
+                            border-bottom: 2px solid #e2e8f0;
+                            padding-bottom: 20px;
+                            margin-bottom: 30px;
+                        }
+                        .watermark {
+                            position: fixed;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%) rotate(-45deg);
+                            font-size: 48px;
+                            color: rgba(203, 213, 225, 0.3);
+                            font-weight: bold;
+                            white-space: nowrap;
+                            pointer-events: none;
+                        }
+                        .tax-card {
+                            background: #f8fafc;
+                            padding: 20px;
+                            border-radius: 16px;
+                            margin: 20px 0;
+                        }
+                        .masked {
+                            background: #e2e8f0;
+                            color: transparent;
+                            text-shadow: 0 0 8px rgba(0,0,0,0.2);
+                            display: inline-block;
+                            padding: 0 8px;
+                            border-radius: 4px;
+                        }
+                        .footer {
+                            margin-top: 40px;
+                            padding-top: 20px;
+                            border-top: 1px solid #e2e8f0;
+                            font-size: 10px;
+                            color: #94a3b8;
+                            text-align: center;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="watermark">FREE VERSION • UPGRADE TO UNLOCK</div>
+                    
+                    <div class="header">
+                        <h1 style="color: #1e3a5f;">🇮🇳 INDIA TAX SUITE</h1>
+                        <p>Income Tax Report (Free Version)</p>
+                        <p>Date: ${new Date().toLocaleDateString('en-IN')}</p>
+                    </div>
+                    
+                    <div class="tax-card">
+                        <h3>📊 Tax Summary</h3>
+                        <p>Old Regime Tax: <span class="masked">₹${maskedOldTax}</span></p>
+                        <p>New Regime Tax: <span class="masked">₹${maskedNewTax}</span></p>
+                        <p>You Save: <span class="masked">₹${maskedSavings}</span></p>
+                    </div>
+                    
+                    <div class="tax-card">
+                        <h3>💡 Premium Report Includes:</h3>
+                        <ul>
+                            <li>✓ Complete unmasked tax calculation</li>
+                            <li>✓ Interactive comparison chart</li>
+                            <li>✓ 7+ personalized tax saving suggestions</li>
+                            <li>✓ Investment recommendations</li>
+                            <li>✓ Professional PDF without watermarks</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer">
+                        <p>Get your complete tax report at IndiaTaxSuite.com/premium</p>
+                        <p>This is a free version report. Upgrade to see full details.</p>
+                    </div>
+                </body>
+                </html>
+            `;
             
-            // Get chart as image
-            const chartCanvas = document.getElementById('taxChart');
-            let chartImage = null;
-            if (chartCanvas) {
-                chartImage = chartCanvas.toDataURL('image/png');
-                doc.addImage(chartImage, 'PNG', 20, 45, 120, 60);
-            }
+            const element = document.createElement('div');
+            element.innerHTML = pdfContent;
+            document.body.appendChild(element);
             
-            // Summary box
-            doc.setFillColor(245, 245, 245);
-            doc.rect(160, 45, 120, 60, 'F');
-            doc.setTextColor(0, 0, 0);
-            doc.setFontSize(10);
-            doc.text(`Income: ₹${currentData.income.toLocaleString('en-IN')}`, 170, 58);
-            doc.text(`Better Regime: ${currentData.betterRegime}`, 170, 70);
-            doc.text(`You Save: ₹${currentData.savings.toLocaleString('en-IN')}`, 170, 82);
-            doc.text(`Old Tax: ₹${currentData.oldTotal.toLocaleString('en-IN')}`, 170, 94);
-            doc.text(`New Tax: ₹${currentData.newTotal.toLocaleString('en-IN')}`, 170, 106);
+            const opt = {
+                margin: [10, 10, 10, 10],
+                filename: `Tax_Report_Free_${Date.now()}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true, logging: false },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
             
-            // Savings highlight
-            doc.setFillColor(34, 197, 94);
-            doc.rect(20, 120, 257, 30, 'F');
-            doc.setTextColor(255, 255, 255);
-            doc.setFontSize(14);
-            doc.text(`💰 YOU SAVE ₹${currentData.savings.toLocaleString('en-IN')} by choosing ${currentData.betterRegime}`, 148, 140, { align: 'center' });
-            
-            // Slabs
-            doc.setTextColor(0, 0, 0);
-            doc.setFontSize(10);
-            doc.text("New Regime Slabs (FY 2025-26)", 20, 170);
-            
-            const slabs = [["0-4L","0%"], ["4-8L","5%"], ["8-12L","10%"], ["12-16L","15%"], ["16-20L","20%"], ["20-24L","25%"], ["24L+","30%"]];
-            let x = 20;
-            slabs.forEach(slab => {
-                doc.setFillColor(240, 248, 255);
-                doc.rect(x, 180, 35, 18, 'F');
-                doc.text(slab[0], x + 17, 190, { align: 'center' });
-                doc.text(slab[1], x + 17, 198, { align: 'center' });
-                x += 38;
+            html2pdf().set(opt).from(element).save().then(() => {
+                document.body.removeChild(element);
             });
-            
-            // Watermark
-            doc.setFontSize(40);
-            doc.setTextColor(200, 200, 200);
-            doc.text("FREE VERSION", 148, 150, { align: 'center', angle: 45 });
-            
-            doc.save(`Tax_Report_${Date.now()}.pdf`);
+        }
+        
+        function showUpgradeModal() {
+            document.getElementById('upgradeModal').style.display = 'flex';
+        }
+        
+        function closeModal() {
+            document.getElementById('upgradeModal').style.display = 'none';
         }
         
         function upgradeToPremium() {
-            alert("✨ Premium Upgrade: ₹49/month or ₹499/year\n\n✅ No watermarks on PDFs\n✅ Unlimited exports\n✅ Download with charts and graphs\n✅ Priority email support\n\nUPI payment coming soon.");
+            window.location.href = "https://rzp.io/l/your-premium-link";
         }
         
-        // Auto-calculate on load
-        window.onload = calculateAndDisplay;
+        window.onload = calculateTax;
     </script>
 </body>
 </html>
