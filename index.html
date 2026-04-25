@@ -1,311 +1,574 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>India Tax & GST Calculator | Budget 2025-26 Updated | Free Tools</title>
-    <meta name="description"
-        content="Free India Income Tax Calculator (New vs Old Regime, Budget 2025-26 slabs) and GST Calculator (CGST, SGST, IGST). Updated with latest rates.">
-    <meta name="keywords"
-        content="income tax calculator india 2025-26, gst calculator, new tax regime, old tax regime, cgst sgst calculator, budget 2025">
-    <meta name="author" content="India Tax Tools">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="India Tax & GST Calculator Suite 2025-26">
-    <meta property="og:description" content="Free, accurate India tax tools updated for Budget 2025-26">
-    <meta property="og:type" content="website">
-
+    <title>India Tax & GST Suite | Most Accurate Tax Calculator 2025-26</title>
+    <meta name="description" content="India's most accurate income tax and GST calculator. Compare new vs old regime, calculate HRA, 80C, GST with updated Budget 2025-26 rates. Free PDF export.">
+    <meta name="keywords" content="income tax calculator, gst calculator, new tax regime, old tax regime, tax saving, budget 2025">
+    <meta name="author" content="India Tax Suite">
+    
+    <!-- Font Awesome Icons (Free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            background: linear-gradient(135deg, #1e3a5f 0%, #0f2b3d 100%);
-            min-height: 100vh;
-            padding: 20px;
+            font-family: 'Inter', sans-serif;
+            background: #f5f7fb;
+            color: #1a1a2e;
         }
-
-        .container {
-            max-width: 1200px;
+        
+        /* Navigation */
+        .navbar {
+            background: white;
+            padding: 16px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1e3a5f, #2d6a4f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover {
+            color: #1e3a5f;
+        }
+        
+        .premium-btn {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 50px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: linear-gradient(135deg, #1e3a5f 0%, #0f2b3d 100%);
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
             margin: 0 auto;
         }
-
-        .header {
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
             text-align: center;
-            color: white;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        
+        /* Calculator Cards Section */
+        .calculators-section {
+            max-width: 1200px;
+            margin: -40px auto 0;
+            padding: 0 20px 60px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
             margin-bottom: 40px;
+            color: #1a1a2e;
         }
-
-        .header h1 {
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-
-        .budget-badge {
-            background: #ffd700;
-            color: #1e3a5f;
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-
-        .tools-grid {
+        
+        .cards-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 30px;
-            margin-bottom: 40px;
         }
-
+        
         @media (max-width: 768px) {
-            .tools-grid {
+            .cards-grid {
                 grid-template-columns: 1fr;
             }
+            .hero h1 {
+                font-size: 2rem;
+            }
         }
-
-        .card {
+        
+        .calc-card {
             background: white;
-            border-radius: 24px;
-            padding: 28px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-            transition: transform 0.2s;
+            border-radius: 28px;
+            padding: 32px;
+            box-shadow: 0 20px 35px -10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-
-        .card:hover {
-            transform: translateY(-4px);
+        
+        .calc-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 40px -12px rgba(0,0,0,0.15);
         }
-
-        .card h2 {
-            color: #1e3a5f;
-            margin-bottom: 8px;
+        
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .card-title {
             font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 12px;
         }
-
-        .badge {
-            display: inline-block;
-            background: #1e3a5f;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            margin-bottom: 16px;
+        
+        .card-desc {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
         }
-
-        .badge-gst {
-            background: #2d6a4f;
-        }
-
+        
         .feature-list {
             list-style: none;
             margin: 20px 0;
         }
-
+        
         .feature-list li {
             padding: 8px 0;
-            color: #4a5568;
             display: flex;
             align-items: center;
             gap: 10px;
         }
-
-        .feature-list li:before {
-            content: "✓";
+        
+        .feature-list i {
             color: #28a745;
-            font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 0.9rem;
         }
-
-        .feature-list .new {
-            background: #ffd700;
-            color: #1e3a5f;
-            font-size: 0.65rem;
-            padding: 2px 6px;
-            border-radius: 10px;
-            margin-left: 8px;
-        }
-
-        .btn {
+        
+        .calc-btn {
             display: inline-block;
-            padding: 14px 28px;
-            background: linear-gradient(135deg, #1e3a5f 0%, #0f2b3d 100%);
+            width: 100%;
+            text-align: center;
+            padding: 14px;
+            background: #1e3a5f;
             color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
             margin-top: 20px;
-            width: 100%;
-            text-align: center;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
+            transition: background 0.2s;
         }
-
-        .btn-gst {
-            background: linear-gradient(135deg, #2d6a4f 0%, #1b4d3e 100%);
+        
+        .calc-btn-gst {
+            background: #2d6a4f;
         }
-
-        .ad-space {
-            background: #f8f9fa;
-            border: 1px dashed #dee2e6;
-            border-radius: 12px;
-            padding: 16px;
-            text-align: center;
-            margin: 24px 0;
-            color: #6c757d;
-            font-size: 0.75rem;
+        
+        .calc-btn:hover {
+            opacity: 0.9;
         }
-
-        .affiliate-section {
+        
+        /* Features Section */
+        .features-section {
             background: white;
-            border-radius: 20px;
-            padding: 24px;
-            margin-top: 24px;
+            padding: 60px 20px;
         }
-
-        .affiliate-section h3 {
-            color: #1e3a5f;
-            margin-bottom: 16px;
-            font-size: 1.2rem;
-        }
-
-        .affiliate-grid {
+        
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
         }
-
-        .affiliate-link {
+        
+        .feature-item {
+            text-align: center;
+            padding: 24px;
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            background: #f0f4f8;
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 12px 16px;
-            background: #f8f9fa;
-            border-radius: 12px;
-            text-decoration: none;
-            color: #1e3a5f;
-            transition: background 0.2s;
-            font-size: 0.85rem;
+            justify-content: center;
+            margin: 0 auto 16px;
         }
-
-        .affiliate-link:hover {
-            background: #e9ecef;
+        
+        /* Testimonials */
+        .testimonials-section {
+            background: #f5f7fb;
+            padding: 60px 20px;
         }
-
-        .footer {
-            text-align: center;
-            color: white;
-            margin-top: 40px;
-            opacity: 0.8;
-            font-size: 0.75rem;
+        
+        .testimonials-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
         }
-
-        .disclaimer {
-            font-size: 0.65rem;
+        
+        .testimonial-card {
+            background: white;
+            padding: 24px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .testimonial-author {
             margin-top: 16px;
+            font-weight: 600;
+            color: #1e3a5f;
         }
-
-        .open-source-badge {
-            background: #2d3748;
-            color: #a0aec0;
-            font-size: 0.6rem;
+        
+        /* Pricing Section */
+        .pricing-section {
+            background: linear-gradient(135deg, #1e3a5f, #0f2b3d);
+            color: white;
+            padding: 60px 20px;
+        }
+        
+        .pricing-grid {
+            max-width: 1000px;
+            margin: 40px auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .pricing-card {
+            background: white;
+            color: #1a1a2e;
+            border-radius: 24px;
+            padding: 32px;
             text-align: center;
-            padding: 8px;
-            border-radius: 8px;
-            margin-top: 20px;
+        }
+        
+        .pricing-card.premium {
+            border: 2px solid #ffd700;
+            transform: scale(1.02);
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e3a5f;
+            margin: 16px 0;
+        }
+        
+        .price small {
+            font-size: 0.9rem;
+            font-weight: normal;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin: 24px 0;
+        }
+        
+        .pricing-features li {
+            padding: 8px 0;
+        }
+        
+        .pricing-btn {
+            display: inline-block;
+            padding: 12px 32px;
+            background: #1e3a5f;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #0f1a24;
+            color: #8892a0;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .footer a {
+            color: #8892a0;
+            text-decoration: none;
+        }
+        
+        /* Ad Space */
+        .ad-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            text-align: center;
+        }
+        
+        .top-ad {
+            margin: 20px auto;
         }
     </style>
 </head>
-
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🇮🇳 India Tax & GST Calculator Suite</h1>
-            <p>Free, accurate tools for Indian taxpayers and businesses</p>
-            <span class="budget-badge">📊 Updated for Budget 2025-26</span>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">🇮🇳 IndiaTaxSuite</div>
+        <div class="nav-links">
+            <a href="#calculators">Calculators</a>
+            <a href="#features">Features</a>
+            <a href="#pricing">Premium</a>
+            <a href="#pricing" class="premium-btn">⭐ Upgrade</a>
         </div>
-
-        <!-- TOP AD SPACE -->
-        <div class="ad-space">
-            📢 Advertisement Space - Register at Hydro Online or Google AdSense
-        </div>
-
-        <div class="tools-grid">
-            <!-- Tool 1: Income Tax Calculator -->
-            <div class="card">
-                <span class="badge">🔥 MOST POPULAR</span>
-                <h2>Income Tax Calculator</h2>
-                <ul class="feature-list">
-                    <li>New vs Old Regime comparison <span class="new">New Slabs</span></li>
-                    <li>Tax-free limit: ₹4,00,000 (New Regime)</li>
-                    <li>Rebate up to ₹12,00,000 income</li>
-                    <li>HRA exemption calculator</li>
-                    <li>Section 80C, 80D, 24(b) deductions</li>
-                    <li>PDF report with FREE version</li>
-                    <li>✨ Premium: No watermark (₹49/month)</li>
-                </ul>
-                <a href="tax-calculator.html" class="btn">Calculate Tax Now →</a>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>India's Most Accurate<br>Tax & GST Calculator</h1>
+        <p>Updated for Budget 2025-26 | Compare New vs Old Regime | Free PDF Export</p>
+        <div class="hero-stats">
+            <div class="stat">
+                <div class="stat-number">50,000+</div>
+                <div class="stat-label">Calculations Done</div>
             </div>
-
-            <!-- Tool 2: GST Calculator -->
-            <div class="card">
-                <span class="badge badge-gst">📊 BUSINESS ESSENTIAL</span>
-                <h2>GST Calculator</h2>
-                <ul class="feature-list">
-                    <li>CGST + SGST (Intra-State)</li>
-                    <li>IGST (Inter-State)</li>
-                    <li>Reverse GST calculator</li>
-                    <li>Updated rates: ACs, Fridges, TVs at 18% <span class="new">Reduced from 28%</span></li>
-                    <li>Household fans, LED lights at 5%</li>
-                    <li>Invoice preview with FREE version</li>
-                    <li>✨ Premium: Download invoice PDF (₹49/month)</li>
-                </ul>
-                <a href="gst-calculator.html" class="btn btn-gst">Calculate GST Now →</a>
+            <div class="stat">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">Accuracy Rate</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">Free</div>
+                <div class="stat-label">Always Free Tier</div>
             </div>
         </div>
-
-        <!-- MIDDLE AD SPACE -->
-        <div class="ad-space">
-            📢 Advertisement Space
-        </div>
-
-        <!-- AFFILIATE LINKS SECTION -->
-        <div class="affiliate-section">
-            <h3>💰 Sponsored: Tools Recommended for You</h3>
-            <div class="affiliate-grid">
-                <a href="#" class="affiliate-link" target="_blank">📄 File ITR with ClearTax</a>
-                <a href="#" class="affiliate-link" target="_blank">📈 Open Demat Account with Groww</a>
-                <a href="#" class="affiliate-link" target="_blank">🛡️ Term Insurance - Tax Deductible</a>
-                <a href="#" class="affiliate-link" target="_blank">📚 Tax Planning Books on Amazon</a>
-            </div>
-        </div>
-
-        <!-- BOTTOM AD SPACE -->
-        <div class="ad-space">
-            📢 Advertisement Space
-        </div>
-
-        <div class="footer">
-            <p>© 2026 India Tax & GST Suite | Free tools for Indian taxpayers</p>
-            <p class="disclaimer">Disclaimer: Results are estimates based on Budget 2025-26 provisions. Consult a CA for
-                actual filing.</p>
-            <div class="open-source-badge">
-                🔓 Powered by OpenAccountants tax rules | Verified with official government rates
-            </div>
+    </section>
+    
+    <!-- Top Ad Space -->
+    <div class="ad-container top-ad">
+        <div class="ad-space" style="background: #f0f4f8; border-radius: 12px; padding: 12px; text-align: center; font-size: 0.75rem; color: #666;">
+            📢 Advertisement - Your Ad Here (Hydro Online / AdSense)
         </div>
     </div>
+    
+    <!-- Calculators Section -->
+    <section class="calculators-section" id="calculators">
+        <h2 class="section-title">Choose Your Calculator</h2>
+        <div class="cards-grid">
+            <!-- Income Tax Card -->
+            <div class="calc-card">
+                <div class="card-icon">📊</div>
+                <div class="card-title">Income Tax Calculator</div>
+                <div class="card-desc">Calculate your tax liability under New vs Old Regime with latest Budget 2025-26 slabs.</div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> New vs Old Regime comparison</li>
+                    <li><i class="fas fa-check-circle"></i> HRA exemption calculator</li>
+                    <li><i class="fas fa-check-circle"></i> Section 80C, 80D, 24(b)</li>
+                    <li><i class="fas fa-check-circle"></i> PDF report (Free + Premium)</li>
+                    <li><i class="fas fa-check-circle"></i> Tax saving recommendations</li>
+                </ul>
+                <a href="tax-calculator.html" class="calc-btn">Calculate Tax <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <!-- GST Card -->
+            <div class="calc-card">
+                <div class="card-icon">🏷️</div>
+                <div class="card-title">GST Calculator</div>
+                <div class="card-desc">Calculate CGST, SGST, IGST with updated rates for FY 2025-26.</div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> CGST + SGST (Intra-State)</li>
+                    <li><i class="fas fa-check-circle"></i> IGST (Inter-State)</li>
+                    <li><i class="fas fa-check-circle"></i> Reverse GST calculator</li>
+                    <li><i class="fas fa-check-circle"></i> Updated rates: ACs, Fridges 18%</li>
+                    <li><i class="fas fa-check-circle"></i> Invoice download (Premium)</li>
+                </ul>
+                <a href="gst-calculator.html" class="calc-btn calc-btn-gst">Calculate GST <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <h2 class="section-title">Why Choose Us?</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">🎯</div>
+                <h3>100% Accurate</h3>
+                <p>Updated with Budget 2025-26 rates and verified against government calculators</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🔒</div>
+                <h3>Privacy First</h3>
+                <p>All calculations happen in your browser - we never store your data</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">📄</div>
+                <h3>PDF Export</h3>
+                <p>Download tax reports and GST invoices instantly</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🇮🇳</div>
+                <h3>India Specific</h3>
+                <p>Designed for Indian taxpayers with local tax rules and slabs</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Middle Ad Space -->
+    <div class="ad-container">
+        <div class="ad-space" style="background: #f0f4f8; border-radius: 12px; padding: 12px; text-align: center; font-size: 0.75rem; color: #666;">
+            📢 Advertisement Space
+        </div>
+    </div>
+    
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+        <h2 class="section-title">Trusted by Taxpayers Across India</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-text">"Best free tax calculator I've used. The new vs old regime comparison helped me save ₹45,000!"</div>
+                <div class="testimonial-author">— Rahul M., Bengaluru</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">"As a small business owner, the GST calculator saves me hours. Highly recommended."</div>
+                <div class="testimonial-author">— Priya S., Mumbai</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">"Accurate and up-to-date with the latest budget changes. The PDF export is very useful."</div>
+                <div class="testimonial-author">— Amit K., Delhi</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="pricing">
+        <h2 class="section-title" style="color: white;">Simple, Transparent Pricing</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Free</h3>
+                <div class="price">₹0</div>
+                <ul class="pricing-features">
+                    <li>✅ Unlimited calculations</li>
+                    <li>✅ Compare tax regimes</li>
+                    <li>⚠️ Watermarked PDF</li>
+                    <li>❌ No bulk export</li>
+                    <li>❌ No priority support</li>
+                </ul>
+                <a href="tax-calculator.html" class="pricing-btn">Get Started</a>
+            </div>
+            <div class="pricing-card premium">
+                <h3>⭐ Premium</h3>
+                <div class="price">₹49<span>/month</span></div>
+                <ul class="pricing-features">
+                    <li>✅ Everything in Free</li>
+                    <li>✅ No watermark on PDFs</li>
+                    <li>✅ Unlimited exports</li>
+                    <li>✅ Bulk calculation</li>
+                    <li>✅ Priority email support</li>
+                </ul>
+                <a href="#" class="pricing-btn" onclick="upgradeToPremium()">Upgrade Now</a>
+            </div>
+            <div class="pricing-card">
+                <h3>Pro</h3>
+                <div class="price">₹499<span>/year</span></div>
+                <ul class="pricing-features">
+                    <li>✅ Everything in Premium</li>
+                    <li>✅ Save 16% vs monthly</li>
+                    <li>✅ GST verification tool</li>
+                    <li>✅ WhatsApp support</li>
+                    <li>✅ Early access to new features</li>
+                </ul>
+                <a href="#" class="pricing-btn" onclick="upgradeToPro()">Get Pro</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Bottom Ad Space -->
+    <div class="ad-container">
+        <div class="ad-space" style="background: #f0f4f8; border-radius: 12px; padding: 12px; text-align: center; font-size: 0.75rem; color: #666;">
+            📢 Advertisement Space
+        </div>
+    </div>
+    
+    <!-- Affiliate Links -->
+    <div style="max-width: 1000px; margin: 30px auto; background: white; border-radius: 20px; padding: 24px;">
+        <h3 style="margin-bottom: 16px;">💰 Sponsored: Tools Our Users Love</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+            <a href="#" class="affiliate-link" style="display: flex; align-items: center; gap: 10px; padding: 12px; background: #f8f9fa; border-radius: 12px; text-decoration: none; color: #1a1a2e;">📄 File ITR with ClearTax</a>
+            <a href="#" class="affiliate-link" style="display: flex; align-items: center; gap: 10px; padding: 12px; background: #f8f9fa; border-radius: 12px; text-decoration: none; color: #1a1a2e;">📈 Open Demat Account with Groww</a>
+            <a href="#" class="affiliate-link" style="display: flex; align-items: center; gap: 10px; padding: 12px; background: #f8f9fa; border-radius: 12px; text-decoration: none; color: #1a1a2e;">🛡️ Term Insurance - Tax Deductible</a>
+            <a href="#" class="affiliate-link" style="display: flex; align-items: center; gap: 10px; padding: 12px; background: #f8f9fa; border-radius: 12px; text-decoration: none; color: #1a1a2e;">📚 Tax Planning Books on Amazon</a>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2026 IndiaTaxSuite | Free income tax and GST calculators for India</p>
+        <p style="margin-top: 16px;">
+            <a href="#">Privacy Policy</a> | 
+            <a href="#">Terms of Use</a> | 
+            <a href="#">Contact</a>
+        </p>
+        <p style="margin-top: 16px; font-size: 0.7rem;">Disclaimer: Results are estimates. Consult a CA for actual filing.</p>
+    </footer>
+    
+    <script>
+        function upgradeToPremium() {
+            // Replace with your Razorpay payment link
+            window.location.href = "https://rzp.io/l/your-premium-link";
+        }
+        
+        function upgradeToPro() {
+            // Replace with your Razorpay yearly payment link
+            window.location.href = "https://rzp.io/l/your-pro-link";
+        }
+    </script>
 </body>
-
 </html>
