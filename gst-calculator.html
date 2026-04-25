@@ -65,4 +65,575 @@
         
         h1 {
             font-size: 1.75rem;
-            font
+            font-weight: 700;
+            color: #064e3b;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            color: #64748b;
+            font-size: 0.875rem;
+            margin-bottom: 24px;
+        }
+        
+        .budget-badge {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin-bottom: 28px;
+            font-size: 0.8rem;
+            color: #78350f;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16,185,129,0.1);
+        }
+        
+        .rate-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+        
+        .rate-btn {
+            background: #f1f5f9;
+            border: 1.5px solid #e2e8f0;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #334155;
+        }
+        
+        .rate-btn.active {
+            background: #064e3b;
+            border-color: #064e3b;
+            color: white;
+        }
+        
+        .rate-btn:hover {
+            background: #e2e8f0;
+        }
+        
+        .calculate-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #064e3b, #065f46);
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 8px;
+        }
+        
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .result-box {
+            margin-top: 28px;
+            animation: fadeIn 0.4s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .gst-summary {
+            background: #f0fdf4;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .amount-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #dcfce7;
+        }
+        
+        .amount-row:last-child {
+            border-bottom: none;
+        }
+        
+        .total-amount {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #064e3b;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 2px solid #bbf7d0;
+        }
+        
+        .gst-breakdown {
+            background: #fef3c7;
+            border-radius: 16px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        
+        .premium-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .btn-free {
+            flex: 1;
+            background: #f1f5f9;
+            color: #334155;
+            border: none;
+            padding: 12px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .btn-premium {
+            flex: 1;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .watermark-note {
+            font-size: 0.65rem;
+            color: #94a3b8;
+            text-align: center;
+            margin-top: 12px;
+        }
+        
+        .preview-blur {
+            filter: blur(4px);
+            background: #f8fafc;
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.75rem;
+        }
+        
+        .ad-space {
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.7rem;
+        }
+        
+        .footer {
+            text-align: center;
+            color: #a7f3d0;
+            font-size: 0.7rem;
+            margin-top: 24px;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 28px;
+            padding: 32px;
+            max-width: 450px;
+            margin: 20px;
+            position: relative;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #94a3b8;
+        }
+        
+        .upgrade-modal-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 16px;
+        }
+        
+        .rate-note {
+            font-size: 0.7rem;
+            color: #64748b;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-bar">
+            <div class="logo">🇮🇳 IndiaTaxSuite</div>
+            <a href="index.html" class="back-link">← Back to all tools</a>
+        </div>
+        
+        <div class="card">
+            <h1>GST Calculator India 2025-26</h1>
+            <div class="subtitle">Calculate CGST, SGST, IGST instantly | Updated rates</div>
+            
+            <div class="budget-badge">
+                📢 <strong>Updated Rates (Sep 2025):</strong> ACs, refrigerators, washing machines reduced from 28% to 18%
+            </div>
+            
+            <div class="form-group">
+                <label>Transaction Type</label>
+                <select id="transType">
+                    <option value="intra">Intra-State (CGST + SGST) - Same State</option>
+                    <option value="inter">Inter-State (IGST) - Different State</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Calculation Type</label>
+                <select id="calcType">
+                    <option value="exclusive">Exclusive (Add GST to amount)</option>
+                    <option value="inclusive">Inclusive (GST already included)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Amount (₹)</label>
+                <input type="number" id="amount" placeholder="Enter amount" value="10000">
+            </div>
+            
+            <div class="form-group">
+                <label>GST Rate</label>
+                <div class="rate-buttons" id="rateButtons">
+                    <button type="button" class="rate-btn" data-rate="0">0%</button>
+                    <button type="button" class="rate-btn" data-rate="5">5%</button>
+                    <button type="button" class="rate-btn" data-rate="12">12%</button>
+                    <button type="button" class="rate-btn active" data-rate="18">18%</button>
+                    <button type="button" class="rate-btn" data-rate="28">28%</button>
+                </div>
+                <div class="rate-note">📌 18% applies to: Electronics, ACs, Refrigerators, Mobiles, TVs</div>
+            </div>
+            
+            <button class="calculate-btn" onclick="calculateGST()">Calculate GST →</button>
+            
+            <div id="resultArea"></div>
+        </div>
+        
+        <div class="ad-space">
+            📢 Advertisement Space - Register at Hydro Online
+        </div>
+        
+        <div class="footer">
+            <p>© 2026 IndiaTaxSuite | Estimates for informational purposes only</p>
+        </div>
+    </div>
+    
+    <!-- Upgrade Modal -->
+    <div id="upgradeModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h3 style="margin-bottom: 16px;">⭐ Upgrade to Premium</h3>
+            <p style="color: #64748b; margin-bottom: 20px;">Get professional GST invoices, bulk calculations, and more.</p>
+            
+            <div style="margin: 20px 0;">
+                <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+                    <span>✓ Professional invoice PDF</span>
+                    <span>🔒 Unlocked</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+                    <span>✓ No watermarks</span>
+                    <span>🔒 Unlocked</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+                    <span>✓ Bulk GST calculation</span>
+                    <span>🔒 Unlocked</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+                    <span>✓ GST history & export</span>
+                    <span>🔒 Unlocked</span>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin: 20px 0;">
+                <span style="font-size: 2rem; font-weight: 700;">₹49</span>
+                <span style="color: #64748b;">/month</span>
+            </div>
+            
+            <button class="upgrade-modal-btn" onclick="upgradeToPremium()">Proceed to Payment →</button>
+        </div>
+    </div>
+    
+    <script>
+        let currentGSTData = null;
+        let selectedRate = 18;
+        
+        // Rate button handlers
+        document.querySelectorAll('.rate-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.rate-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                selectedRate = parseFloat(this.dataset.rate);
+                calculateGST();
+            });
+        });
+        
+        function calculateGST() {
+            const amount = parseFloat(document.getElementById('amount').value) || 0;
+            const transType = document.getElementById('transType').value;
+            const calcType = document.getElementById('calcType').value;
+            const rate = selectedRate;
+            
+            let gstAmount, baseAmount, totalAmount;
+            
+            if (calcType === 'exclusive') {
+                gstAmount = (amount * rate) / 100;
+                baseAmount = amount;
+                totalAmount = amount + gstAmount;
+            } else {
+                baseAmount = (amount * 100) / (100 + rate);
+                gstAmount = amount - baseAmount;
+                totalAmount = amount;
+            }
+            
+            let cgst = 0, sgst = 0, igst = 0;
+            if (transType === 'intra') {
+                cgst = gstAmount / 2;
+                sgst = gstAmount / 2;
+            } else {
+                igst = gstAmount;
+            }
+            
+            currentGSTData = { amount, baseAmount, gstAmount, totalAmount, cgst, sgst, igst, rate, transType, calcType };
+            displayResults(amount, baseAmount, gstAmount, totalAmount, cgst, sgst, igst, rate);
+        }
+        
+        function displayResults(amount, base, gst, total, cgst, sgst, igst, rate) {
+            const resultHtml = `
+                <div class="result-box">
+                    <div class="gst-summary">
+                        <div class="amount-row">
+                            <span>${currentGSTData.calcType === 'exclusive' ? 'Original Amount:' : 'Amount including GST:'}</span>
+                            <strong>₹${amount.toLocaleString('en-IN')}</strong>
+                        </div>
+                        <div class="amount-row">
+                            <span>Base Amount (without GST):</span>
+                            <strong>₹${Math.round(base).toLocaleString('en-IN')}</strong>
+                        </div>
+                        <div class="amount-row">
+                            <span>GST Amount (${rate}%):</span>
+                            <strong style="color:#d97706;">₹${Math.round(gst).toLocaleString('en-IN')}</strong>
+                        </div>
+                        <div class="total-amount">
+                            <span>Total Amount:</span>
+                            <strong>₹${Math.round(total).toLocaleString('en-IN')}</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="gst-breakdown">
+                        <div style="font-weight: 600; margin-bottom: 8px;">GST Breakdown:</div>
+                        ${cgst > 0 ? `<div class="amount-row"><span>CGST (${rate/2}%) :</span><span>₹${Math.round(cgst).toLocaleString('en-IN')}</span></div>` : ''}
+                        ${sgst > 0 ? `<div class="amount-row"><span>SGST (${rate/2}%) :</span><span>₹${Math.round(sgst).toLocaleString('en-IN')}</span></div>` : ''}
+                        ${igst > 0 ? `<div class="amount-row"><span>IGST (${rate}%) :</span><span>₹${Math.round(igst).toLocaleString('en-IN')}</span></div>` : ''}
+                    </div>
+                    
+                    <div class="preview-blur">
+                        📄 INVOICE PREVIEW (MASKED)<br>
+                        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━<br>
+                        Invoice #: ██████ | Date: ██/██/████<br>
+                        Amount: ₹██,███ | GST: ₹█,███
+                    </div>
+                    
+                    <div class="premium-buttons">
+                        <button class="btn-free" onclick="downloadFreeGSTPDF()">📄 Free PDF (Masked)</button>
+                        <button class="btn-premium" onclick="showUpgradeModal()">⭐ Upgrade (₹49) → Full Invoice</button>
+                    </div>
+                    <div class="watermark-note">
+                        Free PDF shows masked amounts and includes watermark
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('resultArea').innerHTML = resultHtml;
+        }
+        
+        async function downloadFreeGSTPDF() {
+            if (!currentGSTData) {
+                alert("Please calculate GST first");
+                return;
+            }
+            
+            const pdfContent = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <title>GST Invoice - Free Version</title>
+                    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+                    <style>
+                        body {
+                            font-family: 'Inter', sans-serif;
+                            padding: 40px;
+                            color: #1e293b;
+                        }
+                        .header {
+                            text-align: center;
+                            border-bottom: 2px solid #e2e8f0;
+                            padding-bottom: 20px;
+                            margin-bottom: 30px;
+                        }
+                        .watermark {
+                            position: fixed;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%) rotate(-45deg);
+                            font-size: 48px;
+                            color: rgba(203, 213, 225, 0.3);
+                            font-weight: bold;
+                            white-space: nowrap;
+                        }
+                        .invoice-box {
+                            background: #f8fafc;
+                            padding: 20px;
+                            border-radius: 16px;
+                            margin: 20px 0;
+                        }
+                        .masked {
+                            background: #e2e8f0;
+                            color: transparent;
+                            text-shadow: 0 0 8px rgba(0,0,0,0.2);
+                            display: inline-block;
+                            padding: 0 8px;
+                            border-radius: 4px;
+                        }
+                        .footer {
+                            margin-top: 40px;
+                            padding-top: 20px;
+                            border-top: 1px solid #e2e8f0;
+                            font-size: 10px;
+                            color: #94a3b8;
+                            text-align: center;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="watermark">FREE VERSION • UPGRADE TO UNLOCK</div>
+                    
+                    <div class="header">
+                        <h1 style="color: #064e3b;">🇮🇳 INDIA TAX SUITE</h1>
+                        <p>GST Invoice (Free Version)</p>
+                        <p>Date: ${new Date().toLocaleDateString('en-IN')}</p>
+                    </div>
+                    
+                    <div class="invoice-box">
+                        <h3>📄 Invoice Summary</h3>
+                        <p>Amount: <span class="masked">₹XX,XXX</span></p>
+                        <p>GST (${currentGSTData.rate}%): <span class="masked">₹X,XXX</span></p>
+                        <p>Total: <span class="masked">₹XX,XXX</span></p>
+                    </div>
+                    
+                    <div class="invoice-box">
+                        <h3>⭐ Premium Invoice Includes:</h3>
+                        <ul>
+                            <li>✓ Complete unmasked amounts</li>
+                            <li>✓ Professional GST invoice format</li>
+                            <li>✓ Company logo & GSTIN fields</li>
+                            <li>✓ Download as PDF/Excel</li>
+                            <li>✓ No watermarks</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer">
+                        <p>Get your complete GST invoice at IndiaTaxSuite.com/premium</p>
+                        <p>This is a free version invoice. Upgrade to see full details.</p>
+                    </div>
+                </body>
+                </html>
+            `;
+            
+            const element = document.createElement('div');
+            element.innerHTML = pdfContent;
+            document.body.appendChild(element);
+            
+            const opt = {
+                margin: [10, 10, 10, 10],
+                filename: `GST_Invoice_Free_${Date.now()}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            
+            html2pdf().set(opt).from(element).save().then(() => {
+                document.body.removeChild(element);
+            });
+        }
+        
+        function showUpgradeModal() {
+            document.getElementById('upgradeModal').style.display = 'flex';
+        }
+        
+        function closeModal() {
+            document.getElementById('upgradeModal').style.display = 'none';
+        }
+        
+        function upgradeToPremium() {
+            window.location.href = "https://rzp.io/l/your-premium-link";
+        }
+        
+        window.onload = calculateGST;
+    </script>
+</body>
+</html>
